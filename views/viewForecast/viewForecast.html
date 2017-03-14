@@ -1,0 +1,53 @@
+<div> 
+	<div class="container bottom-pad">
+
+		<div class="row text-center">
+			<h1>Awesome Weather App</h1>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-3"></div>	
+			<div class="col-lg-6">
+		    	<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+					</span>
+					<input type="text" class="form-control" ng-model="cityName" required placeholder="Find By City...">
+					<span class="input-group-btn">
+						<button class="btn btn-default btn-primary" type="button" ng-click="getForcast(cityName)">Get The Forecast</button>
+					</span>
+				</div>
+			</div>	  
+			<div class="col-lg-3"></div>	
+		</div>
+
+	</div>
+
+
+	<div class="container" ng-if="weatherData">
+		<div class="row" >
+			<div class="panel panel-default">
+			  
+			  <div class="panel-heading">Weather Forcast For {{weatherData.city.name}}, {{weatherData.city.country}} (Average Temp: {{averageTemp | number:2}}&deg;C)</div>
+			  
+			  <table class="table">
+			  	<tr>
+				  	<th>Time </th>
+				  	<th>Weather</th>
+				  	<th>Temperature</th>
+				  	<th>Humidity</th>
+				  	<th>Wind Speed</th>
+			  	</tr>
+			  	<tr ng-repeat='item in weatherData.list'>
+			  		<td>{{item.dt | dateDisplay}}</td>
+			  		<td>{{item.weather[0].description}}</td>
+			  		<td>{{item.main.temp}}&deg;C</td>
+			  		<td>{{item.main.humidity}}</td>
+			  		<td>{{item.wind.speed}}</td>
+			  	</tr>		    
+			  </table>
+
+			</div>
+		</div>
+	</div>
+</div>
